@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="'UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="index.css">
+
+    </head>
+    <body>
+        <p id ='demo'></p>
+        <h1>         BeWheel</h1>
+        <div class="image-container">
+            <img id="wheel" src="wheel.png" alt="wheel" class="center">
+            <img id="arrow" src="arrow2.jpg" alt="arrow">
+            <div class="text-container">
+                <h1>Color Guide</h1>
+                <p>
+                    Red: Paint<br>
+                    Green: Cards<br>
+                    Light Purple: Happy Hour<br>
+                    Dark Purple: Beer Die<br>
+                    Blue: Watch TV Show<br>
+                    Yellow: Play Fifa<br>
+                    Orange: Play Just Dance
+                </p>
+            </div>
+        </div>
+        <script>
+            document.getElementById("arrow").style.transform = 'rotate(45deg)';
+            document.getElementById("arrow").style.left = '210px';
+            document.getElementById("arrow").style.top = '500px';
+
+            var i = 0;
+            const angle = Math.random() * (900-360) + 360
+            var timer = setInterval(()=>{
+                document.getElementById("wheel").style.transform= 'rotate('+i+'deg)';
+                i = i+1
+                if(i>angle) {
+                    clearInterval(timer);
+               }
+            }, 5)
+        </script>
+    </body>
+</html>
