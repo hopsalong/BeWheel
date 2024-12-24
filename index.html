@@ -42,21 +42,27 @@
         function rollDice() {
             const diceFaces = ['Go on a Walk', 'Dance Time!!', 'Cards', 'Board Game', 'Puzzle', 'Thrifting', 'Singing Time!!', 'Exercise', 'Watch Something'];
             const randomIndex = Math.floor(Math.random() * diceFaces.length);
-            var stored = localStorage.getItem('SavedActivity');
-            const myArray = stored.split("Datetime:");
-            var olddatetime = myArray[1];
-            var last10 = stored.substr(stored.length - 10);
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth() + 1; // Months are zero-indexed
-            const day = now.getDate();
-            const hours = now.getHours();
-            var datetime = year+month+day+hours;
-            //document.getElementById('output').textContent = "cur DT: "+datetime+" Old dt: "+olddatetime;
+            if(localStorage.getItem('SavedActivity') !== null) {
+                var stored = localStorage.getItem('SavedActivity');
+                const myArray = stored.split("Datetime:");
+                var olddatetime = myArray[1];
+                var last10 = stored.substr(stored.length - 10);
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1; // Months are zero-indexed
+                const day = now.getDate();
+                const hours = now.getHours();
+                var datetime = year+month+day+hours;
+                //document.getElementById('output').textContent = "cur DT: "+datetime+" Old dt: "+olddatetime;
 
-            if (olddatetime == datetime){
-                var storedactivity = stored.replace("Datetime:"+olddatetime, "");
-                document.getElementById('dice').textContent = storedactivity;
+                if (olddatetime == datetime){
+                    var storedactivity = stored.replace("Datetime:"+olddatetime, "");
+                    document.getElementById('dice').textContent = storedactivity;
+                }
+                else{
+                    document.getElementById('dice').textContent = diceFaces[randomIndex];
+                    localStorage.setItem('SavedActivity', diceFaces[randomIndex] + "Datetime:"+datetime);
+                }
             }
             else{
                 document.getElementById('dice').textContent = diceFaces[randomIndex];
